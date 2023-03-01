@@ -122,7 +122,7 @@ export const Download =({loading,setLoading})=>{
 
         {audioLink.map((format,index)=>{
 
-      return <a key={index} href={`${format.url}`}  target="_blank" rel="noopener noreferrer" download={title}>{format.itag}</a>
+      return <a key={index} href={`https://yt2ndownload.000webhostapp.com/download.php?link=${encodeURIComponent(format.url)}&title=${title}&len=${format.contentLength}&type=${format.mimeType}`}  target="_blank" rel="noopener noreferrer" >{format.itag}</a>
     })}
             
         </div>

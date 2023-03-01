@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Route,useNavigate,Routes,BrowserRouter } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
 
@@ -10,8 +10,25 @@ import { Footer } from './componend/Footer';
 import { Download } from './componend/Download'
 
 function App() {
+  const parsedUrl = new URL(window.location);
   const navigator=useNavigate()
   const [loading,setLoading] = useState(true);
+  const [videoUrl,setVideoUrl]=useState('')
+  useEffect(()=>{
+    if (parsedUrl.searchParams.get("text") != null) {
+      setVideoUrl(parsedUrl.searchParams.get("text"))
+    }
+    if(window.location.pathname === "/"){
+      setVideoUrl("")
+    }else{
+
+      
+      if (parsedUrl.searchParams.get("text") != null) {
+        setVideoUrl(parsedUrl.searchParams.get("text"))
+      }
+    }
+
+  },[window.location.pathname])
   const handleSubmit = (e) => {
     e.preventDefault()
     
@@ -29,7 +46,7 @@ function App() {
     }
   }
 
-  const [videoUrl,setVideoUrl]=useState('')
+
   const handleUrlchange=(e)=>{
     
     setVideoUrl(e.target.value)
