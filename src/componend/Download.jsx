@@ -111,7 +111,7 @@ export const Download =({loading,setLoading})=>{
         <div className="format">
         {videoLink.map((format,index)=>{
 
-    return <a key={index} href={`${format.url}&title=${title}`} target="_blank" rel="noopener noreferrer">{format.qualityLabel}</a>
+            return <a key={index} href={format.contentLength ? `https://yt2ndownload.000webhostapp.com/download.php?link=${encodeURIComponent(format.url)}&title=${title}&len=${format.contentLength}&type=${format.mimeType}` : `${format.url}&title=${title}`} target="_blank" rel="noopener noreferrer">{format.qualityLabel}</a>
         })}
 
 

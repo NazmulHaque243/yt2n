@@ -1,7 +1,7 @@
 {
-  "name" : "Yt2n",
-  "short_name" : "Yt2n",
-  "description" : "Download Videos",
+  "name": "Yt2n",
+  "short_name": "Yt2n",
+  "description": "Download Videos",
   "icons": [
     {
       "src": "favicon.ico",
@@ -24,7 +24,7 @@
   "theme_color": "#222831",
   "background_color": "#222831",
   "share_target": {
-    "action": "/download",
+    "action": "/",
     "method": "GET",
     "params": {
       "title": "title",
