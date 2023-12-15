@@ -59,7 +59,7 @@ export default function Download({ loading, setLoading }) {
         setVideoLink(video);
         setAudioLink(audio);
 
-        console.log(data);
+        // console.log(data);
         setLoading(false);
         // console.log(JSON.stringify(response.data));
       })
