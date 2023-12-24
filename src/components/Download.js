@@ -9,9 +9,21 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
+function str_hash_and_number_rpl(str){
+  return str.replace(/(\W+)(\d+)/i, "");
+
+}
+function str_pip_rep(strs){
+  return strs.replace(/\|/i,"_");
+}
+
+
+
+
 export default function Download({ loading, setLoading }) {
   // const classes = useStyles();
   let query = useQuery();
+ 
 
   // states
   const [thumnail, setThumnail] = useState("");
@@ -59,7 +71,9 @@ export default function Download({ loading, setLoading }) {
         setVideoLink(video);
         setAudioLink(audio);
 
-        console.log(data);
+       
+
+        // console.log(data);
         setLoading(false);
         // console.log(JSON.stringify(response.data));
       })
@@ -67,6 +81,8 @@ export default function Download({ loading, setLoading }) {
         console.log(error);
       });
   }, [query.get("url")]);
+  
+  
   return (
     <>
       {!loading ? (
@@ -87,6 +103,7 @@ export default function Download({ loading, setLoading }) {
             </div> */}
           <div className="format">
             {videoLink.map((format, index) => {
+              
               return (
                 <a
                   color="primary"
@@ -105,10 +122,10 @@ export default function Download({ loading, setLoading }) {
                     format.contentLength
                       ? `https://yt2ndownload.000webhostapp.com/download.php?link=${encodeURIComponent(
                           format.url
-                        )}&title=${title}&len=${format.contentLength}&type=${
+                        )}&title=${str_pip_rep(str_hash_and_number_rpl(title)).trim()}&len=${format.contentLength}&type=${
                           format.mimeType
                         }`
-                      : `${format.url}&title=${title}`
+                      : `${format.url}&title=${str_pip_rep(str_hash_and_number_rpl(title)).trim()}`
                   }
                   target="_blank"
                   rel="noopener noreferrer"
@@ -137,7 +154,7 @@ export default function Download({ loading, setLoading }) {
                   key={index}
                   href={`https://yt2ndownload.000webhostapp.com/download.php?link=${encodeURIComponent(
                     format.url
-                  )}&title=${title}&len=${format.contentLength}&type=${
+                  )}&title=${str_pip_rep(str_hash_and_number_rpl(title)).trim()}&len=${format.contentLength}&type=${
                     format.mimeType
                   }`}
                   target="_blank"
